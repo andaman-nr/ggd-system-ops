@@ -1,0 +1,62 @@
+{
+  "name": "combination-api-mcs-fastify",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/combination-api/mcs-fastify/src",
+  "projectType": "application",
+  "targets": {
+    "build": {
+      "executor": "@nx/esbuild:esbuild",
+      "outputs": [
+        "{options.outputPath}"
+      ],
+      "defaultConfiguration": "production",
+      "options": {
+        "platform": "node",
+        "outputPath": "dist/apps/combination-api/mcs-fastify",
+        "format": [
+          "cjs"
+        ],
+        "bundle": false,
+        "main": "apps/combination-api/mcs-fastify/src/main.ts",
+        "tsConfig": "apps/combination-api/mcs-fastify/tsconfig.app.json",
+        "assets": [
+          "apps/combination-api/mcs-fastify/src/assets"
+        ],
+        "generatePackageJson": true,
+        "esbuildOptions": {
+          "sourcemap": true,
+          "outExtension": {
+            ".js": ".js"
+          }
+        }
+      },
+      "configurations": {
+        "development": {},
+        "production": {
+          "esbuildOptions": {
+            "sourcemap": false,
+            "outExtension": {
+              ".js": ".js"
+            }
+          }
+        }
+      }
+    },
+    "serve": {
+      "executor": "@nx/js:node",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "combination-api-mcs-fastify:build"
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "combination-api-mcs-fastify:build:development"
+        },
+        "production": {
+          "buildTarget": "combination-api-mcs-fastify:build:production"
+        }
+      }
+    }
+  },
+  "tags": []
+}
