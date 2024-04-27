@@ -1,0 +1,56 @@
+{
+  "name": "url-shortener-mcs-fastify",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/url-shortener/mcs-fastify/src",
+  "projectType": "application",
+  "tags": [],
+  "targets": {
+    "build": {
+      "executor": "@nx/esbuild:esbuild",
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
+      "options": {
+        "platform": "node",
+        "outputPath": "dist/apps/url-shortener/mcs-fastify",
+        "format": ["cjs"],
+        "bundle": false,
+        "main": "apps/url-shortener/mcs-fastify/src/main.ts",
+        "tsConfig": "apps/url-shortener/mcs-fastify/tsconfig.app.json",
+        "assets": ["apps/url-shortener/mcs-fastify/src/assets"],
+        "generatePackageJson": true,
+        "esbuildOptions": {
+          "sourcemap": true,
+          "outExtension": {
+            ".js": ".js"
+          }
+        }
+      },
+      "configurations": {
+        "development": {},
+        "production": {
+          "esbuildOptions": {
+            "sourcemap": false,
+            "outExtension": {
+              ".js": ".js"
+            }
+          }
+        }
+      }
+    },
+    "serve": {
+      "executor": "@nx/js:node",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "url-shortener-mcs-fastify:build"
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "url-shortener-mcs-fastify:build:development"
+        },
+        "production": {
+          "buildTarget": "url-shortener-mcs-fastify:build:production"
+        }
+      }
+    }
+  }
+}
