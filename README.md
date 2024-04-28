@@ -18,3 +18,7 @@ npx nx g @nx/node:application url-shortener-mcs-fastify --directory apps/url-sho
 ```bash
 npx nx show project url-shortener-mcs-fastify --web
 ```
+### add dependencies
+```bash
+pnpm add @fastify/cors @fastify/swagger @fastify/swagger-ui
+```

@@ -10,7 +10,9 @@ const server = Fastify({
 });
 
 // Register your application as a normal plugin.
-server.register(app);
+server.register(app, {
+  appPrefix: process.env.APP_PREFIX ?? '/url-shortener-webapi',
+});
 
 // Start listening.
 server.listen({ port, host }, (err) => {
