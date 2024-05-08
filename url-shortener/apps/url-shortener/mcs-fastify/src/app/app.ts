@@ -24,6 +24,8 @@ export async function app(fastify: FastifyInstance, opts: AppOptions) {
   // define your routes in one of these
   fastify.register(AutoLoad, {
     dir: path.join(__dirname, 'routes'),
+    autoHooksPattern: /.*(routes|hook)\.ts/,
+    indexPattern: /.*(routes|hook)\.ts/,
     options: { ...opts, prefix: opts.appPrefix },
   });
 }

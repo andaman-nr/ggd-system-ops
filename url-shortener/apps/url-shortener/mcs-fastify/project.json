@@ -7,16 +7,25 @@
   "targets": {
     "build": {
       "executor": "@nx/esbuild:esbuild",
-      "outputs": ["{options.outputPath}"],
+      "outputs": [
+        "{options.outputPath}"
+      ],
       "defaultConfiguration": "production",
       "options": {
         "platform": "node",
         "outputPath": "dist/apps/url-shortener/mcs-fastify",
-        "format": ["cjs"],
+        "format": [
+          "cjs"
+        ],
         "bundle": false,
+        "external": [
+          "fastify"
+        ],
         "main": "apps/url-shortener/mcs-fastify/src/main.ts",
         "tsConfig": "apps/url-shortener/mcs-fastify/tsconfig.app.json",
-        "assets": ["apps/url-shortener/mcs-fastify/src/assets"],
+        "assets": [
+          "apps/url-shortener/mcs-fastify/src/assets"
+        ],
         "generatePackageJson": true,
         "esbuildOptions": {
           "sourcemap": true,
