@@ -11,7 +11,7 @@ export async function createShortUrlEndpoint(
   return reply.status(200).send({
     success: true,
     data: {
-      shortUrl: 'http://localhost:3000/abc123',
+      shortUrl: 'http://localhost:3000/abc123', 
     },
   });
 }
