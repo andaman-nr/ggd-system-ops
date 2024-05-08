@@ -13,10 +13,6 @@ export default fp(async function (fastify: FastifyInstance, opts: AppOptions) {
         description: 'URL Shortener API with Fastify',
         version: '1.0.0',
       },
-      // externalDocs: {
-      // url: 'https://swagger.io',
-      // description: 'Find more info here',
-      // },
       host:
         (process.env.HOST ?? 'localhost') + ':' + (process.env.PORT ?? '3000'),
       schemes: ['http', 'https'],

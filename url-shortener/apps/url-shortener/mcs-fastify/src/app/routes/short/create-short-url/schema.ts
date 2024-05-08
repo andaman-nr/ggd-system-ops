@@ -1,4 +1,6 @@
 export const createShortUrlSchema = {
+  summary: 'Create a short URL',
+  description: 'Create a short URL from an original URL',
   tags: ['URL Shortener'],
   body: {
     type: 'object',

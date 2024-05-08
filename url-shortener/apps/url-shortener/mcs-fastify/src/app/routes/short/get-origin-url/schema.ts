@@ -1,4 +1,6 @@
 export const getOriginUrlSchema = {
+  summary: 'Get origin URL',
+  description: 'Get origin URL by slug',
   tags: ['URL Shortener'],
   params: {
     type: 'object',
