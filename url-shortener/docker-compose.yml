@@ -1,0 +1,47 @@
+services:
+  postgres:
+    container_name: postgres_url_shortener
+    image: postgres:15.2
+    restart: unless-stopped
+    ports:
+      - 5434:5432
+    volumes:
+      - ./data/postgresql:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_DB=postgres
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -U postgres']
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  localstack-url-shortener:
+    container_name: localstack-url-shortener
+    image: 'localstack/localstack:latest'
+    restart: unless-stopped
+    environment:
+      - AWS_DEFAULT_REGION=ap-southeast-1
+      - EDGE_PORT=4566
+      - SERVICES=sqs,sns,s3
+    ports:
+      - '4567:4566'
+    volumes:
+      - '/var/lib/localstack:/var/lib/localstack'
+      - '/var/run/docker.sock:/var/run/docker.sock'
+      - './script/init-aws.sh:/etc/localstack/init/ready.d/init-aws.sh'
+
+  url-shortener-mcs-fastify:
+    container_name: url-shortener-mcs-fastify
+    build:
+      context: .
+      dockerfile: apps/url-shortener/mcs-fastify/Dockerfile
+    depends_on:
+      - postgres
+      - localstack-url-shortener
+    restart: unless-stopped
+    ports:
+      - 3001:3001
+    env_file:
+      - apps/url-shortener/mcs-fastify/.env

@@ -2,7 +2,12 @@
   "name": "url-shortener",
   "version": "0.0.0",
   "license": "MIT",
-  "scripts": {},
+  "scripts": {
+    "tlb": "nx run-many --target=lint --verbose --configuration=ci && nx run-many --target=test --verbose --configuration=ci && nx run-many --target=build --verbose --configuration=ci",
+    "test:all": "nx run-many --target test --verbose --configuration=ci --output-style static",
+    "lint:all": "nx run-many --target=lint --verbose",
+    "build:all": "nx run-many --target=build --verbose"
+  },
   "private": true,
   "devDependencies": {
     "@nx/esbuild": "18.3.4",

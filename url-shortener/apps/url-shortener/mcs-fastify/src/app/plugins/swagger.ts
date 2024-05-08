@@ -10,7 +10,7 @@ export default fp(async function (fastify: FastifyInstance, opts: AppOptions) {
     swagger: {
       info: {
         title: 'URL Shortener API',
-        description: 'This Api is a URL Shortener',
+        description: 'URL Shortener API with Fastify',
         version: '1.0.0',
       },
       // externalDocs: {
@@ -25,79 +25,15 @@ export default fp(async function (fastify: FastifyInstance, opts: AppOptions) {
       basePath: '/url-shortener-webapi',
       tags: [
         {
-          name: 'Game',
-          description: 'Game info from Steam',
-          externalDocs: {
-            url: 'https://developer.valvesoftware.com/wiki/Steam_Web_API',
-          },
+          name: 'URL Shortener',
+          description: 'URL Shortener API',
         },
       ],
-      definitions: {
-        // User: {
-        //   type: 'object',
-        //   required: ['id', 'email'],
-        //   properties: {
-        //     id: { type: 'string', format: 'uuid' },
-        //     firstName: { type: 'string' },
-        //     lastName: { type: 'string' },
-        //     email: { type: 'string', format: 'email' },
-        //   },
-        // },
-      },
       securityDefinitions: {
         apiKey: {
           type: 'apiKey',
           name: 'apiKey',
           in: 'header',
-        },
-      },
-      paths: {
-        '/test': {
-          get: {
-            tags: ['Game'],
-            summary: 'Test endpoint',
-            description: 'Test endpoint',
-            produces: ['application/json'],
-            responses: {
-              200: {
-                description: 'Successful response',
-                schema: {
-                  type: 'object',
-                  properties: {
-                    message: { type: 'string' },
-                  },
-                },
-              },
-            },
-          },
-        },
-        '/test/{id}': {
-          get: {
-            tags: ['Game'],
-            summary: 'Test endpoint with parameter',
-            description: 'Test endpoint with parameter',
-            produces: ['application/json'],
-            parameters: [
-              {
-                name: 'id',
-                in: 'path',
-                description: 'ID of the game',
-                required: true,
-                type: 'string',
-              },
-            ],
-            responses: {
-              200: {
-                description: 'Successful response',
-                schema: {
-                  type: 'object',
-                  properties: {
-                    message: { type: 'string' },
-                  },
-                },
-              },
-            },
-          },
         },
       },
     },
